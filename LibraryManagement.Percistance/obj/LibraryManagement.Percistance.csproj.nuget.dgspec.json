@@ -1,0 +1,146 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\dotnet\\LibraryManagement\\LibraryManagement.Percistance\\LibraryManagement.Percistance.csproj": {}
+  },
+  "projects": {
+    "D:\\dotnet\\LibraryManagement\\LibraryManagement.Entity\\LibraryManagement.Entity.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\dotnet\\LibraryManagement\\LibraryManagement.Entity\\LibraryManagement.Entity.csproj",
+        "projectName": "LibraryManagement.Entity",
+        "projectPath": "D:\\dotnet\\LibraryManagement\\LibraryManagement.Entity\\LibraryManagement.Entity.csproj",
+        "packagesPath": "C:\\Users\\venugopal.hegde\\.nuget\\packages\\",
+        "outputPath": "D:\\dotnet\\LibraryManagement\\LibraryManagement.Entity\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\venugopal.hegde\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "https://sitecore.myget.org/F/sc-packages/": {},
+          "https://www.nuget.org/api/v2/": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\dotnet\\LibraryManagement\\LibraryManagement.Percistance\\LibraryManagement.Percistance.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\dotnet\\LibraryManagement\\LibraryManagement.Percistance\\LibraryManagement.Percistance.csproj",
+        "projectName": "LibraryManagement.Percistance",
+        "projectPath": "D:\\dotnet\\LibraryManagement\\LibraryManagement.Percistance\\LibraryManagement.Percistance.csproj",
+        "packagesPath": "C:\\Users\\venugopal.hegde\\.nuget\\packages\\",
+        "outputPath": "D:\\dotnet\\LibraryManagement\\LibraryManagement.Percistance\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\venugopal.hegde\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "https://sitecore.myget.org/F/sc-packages/": {},
+          "https://www.nuget.org/api/v2/": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "D:\\dotnet\\LibraryManagement\\LibraryManagement.Entity\\LibraryManagement.Entity.csproj": {
+                "projectPath": "D:\\dotnet\\LibraryManagement\\LibraryManagement.Entity\\LibraryManagement.Entity.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+D:\dotnet\LibraryManagement\LibraryManagement.Services\bin\Debug\netstandard2.0\LibraryManagement.Services.deps.json
+D:\dotnet\LibraryManagement\LibraryManagement.Services\bin\Debug\netstandard2.0\LibraryManagement.Services.dll
+D:\dotnet\LibraryManagement\LibraryManagement.Services\bin\Debug\netstandard2.0\LibraryManagement.Services.pdb
+D:\dotnet\LibraryManagement\LibraryManagement.Services\bin\Debug\netstandard2.0\LibraryManagement.Entity.dll
+D:\dotnet\LibraryManagement\LibraryManagement.Services\bin\Debug\netstandard2.0\LibraryManagement.Entity.pdb
+D:\dotnet\LibraryManagement\LibraryManagement.Services\obj\Debug\netstandard2.0\LibraryManagement.Services.csprojAssemblyReference.cache
+D:\dotnet\LibraryManagement\LibraryManagement.Services\obj\Debug\netstandard2.0\LibraryManagement.Services.AssemblyInfoInputs.cache
+D:\dotnet\LibraryManagement\LibraryManagement.Services\obj\Debug\netstandard2.0\LibraryManagement.Services.AssemblyInfo.cs
+D:\dotnet\LibraryManagement\LibraryManagement.Services\obj\Debug\netstandard2.0\LibraryManagement.Services.csproj.CopyComplete
+D:\dotnet\LibraryManagement\LibraryManagement.Services\obj\Debug\netstandard2.0\LibraryManagement.Services.dll
+D:\dotnet\LibraryManagement\LibraryManagement.Services\obj\Debug\netstandard2.0\LibraryManagement.Services.pdb

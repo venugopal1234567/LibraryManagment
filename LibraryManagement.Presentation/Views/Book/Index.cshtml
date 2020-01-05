@@ -1,0 +1,71 @@
+@model IEnumerable<BookIndexViewModel>
+
+
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="card-body">
+             <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active" area-current="page">Book List</li>
+                </ol>
+            </nav>
+             <div class="row">
+                 <div class="col-md-12 table-responsive-md">
+                      <a class="btn btn-xs btn-outline-success float-md-right"  asp-action="Create">New Book</a>
+                      <table class="table table-striped">
+                          <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Photo</th>
+                                  <th>Author</th>
+                                  <th>Title</th>
+                                  <th>Publisher</th>
+                                  <th>Language</th>
+                                  <th>Pages</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              @foreach (var item in Model)
+                              {
+                                  <tr>
+                                      <td>
+                                          <a asp-action="Detail" asp-route-id="@item.Id">
+                                              @item.Id
+                                          </a>
+                                      </td>
+                                      <td>
+                                          <img alt="image" src="@Url.Content(item.ImageUrl)" width="250" height="250" />
+                                      </td>
+                                      <td>@item.Author</td>
+                                      <td>@item.Title</td>
+                                      <td>@item.Publisher</td>
+                                      <td>@item.Language</td>
+                                      <td>@item.Pages</td>
+                                      <td>
+                                          <a class="text-primary" asp-action="Edit" asp-route-id="@item.Id">
+                                             Edit
+                                          </a>
+                                          <a class="text-success" asp-action="Detail" asp-route-id="@item.Id">
+                                             Detail
+                                          </a>
+                                          <a class="text-danger" asp-action="Delete" asp-route-id="@item.Id">
+                                             Delete
+                                          </a>
+                                          <a class="text-success" asp-action="BorrowRecord" asp-route-id="@item.Id">
+                                             BORROW
+                                          </a>
+                                      </td>
+                                  </tr>
+                                  
+                              }
+                          </tbody>
+
+                      </table>
+                 </div>
+             </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,39 @@
+@model LibraryBorrowViewModel
+
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="card-body">
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item"><a  asp-action="Index">Book List</a></li>
+                    <li class="breadcrumb-item active" area-current="page">Borrow</li>
+                </ol>
+            </nav>
+            <br /> <br />
+             <form method ="post"  enctype="multipart/form-data" asp-action="BorrowRecord">
+                  <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+                  <div class="form-row">
+
+                      <div class="form-group col-md-2">
+                          @* <label asp-for="UserId"></label>
+                          <select asp-for="UserId"   
+                      class="form-control"   
+                      asp-items="@( (List<SelectListItem>) ViewBag.SelectUser )" >  
+                    </select> *@
+
+                       @Html.DropDownList("UserId", (MultiSelectList)ViewBag.SelectUser)
+                      </div>
+                    <div class="form-group">
+                       <input asp-for="BookId" type="hidden"/>
+                    </div>
+                    <div class="form-group">
+                       <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+             </form>
+            
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,8 @@
+D:\dotnet\LibraryManagement\LibraryManagement.Entity\obj\Debug\netstandard2.0\LibraryManagement.Entity.csprojAssemblyReference.cache
+D:\dotnet\LibraryManagement\LibraryManagement.Entity\obj\Debug\netstandard2.0\LibraryManagement.Entity.AssemblyInfoInputs.cache
+D:\dotnet\LibraryManagement\LibraryManagement.Entity\obj\Debug\netstandard2.0\LibraryManagement.Entity.AssemblyInfo.cs
+D:\dotnet\LibraryManagement\LibraryManagement.Entity\bin\Debug\netstandard2.0\LibraryManagement.Entity.deps.json
+D:\dotnet\LibraryManagement\LibraryManagement.Entity\bin\Debug\netstandard2.0\LibraryManagement.Entity.dll
+D:\dotnet\LibraryManagement\LibraryManagement.Entity\bin\Debug\netstandard2.0\LibraryManagement.Entity.pdb
+D:\dotnet\LibraryManagement\LibraryManagement.Entity\obj\Debug\netstandard2.0\LibraryManagement.Entity.dll
+D:\dotnet\LibraryManagement\LibraryManagement.Entity\obj\Debug\netstandard2.0\LibraryManagement.Entity.pdb

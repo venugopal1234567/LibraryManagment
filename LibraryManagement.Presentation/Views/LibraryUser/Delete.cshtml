@@ -1,0 +1,26 @@
+@model LibraryDeleteViewModel
+
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="card-body">
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item"><a  asp-action="Index">User List</a></li>
+                    <li class="breadcrumb-item active" area-current="page">Delete</li>
+                </ol>
+            </nav>
+            <br /> <br />
+            <h2> Are you want to delete User : @Model.Username ?</h2>
+             <form method ="post"  enctype="multipart/form-data" asp-action="Delete">
+                 
+                    <div class="form-group">
+                       <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+             </form>
+            
+        </div>
+
+    </div>
+
+</div>

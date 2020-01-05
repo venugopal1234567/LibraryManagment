@@ -1,0 +1,35 @@
+@model LibraryUserDetailViewModel
+
+<div class="row">
+    <div class="col-md-12 grid-margin grid-margin-md-0">
+        <div class="card-body">
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item"><a  asp-action="Index">Users List</a></li>
+                    <li class="breadcrumb-item active" area-current="page">User Detail</li>
+                </ol>
+            </nav>
+            <br /> <br />
+             <div class="wrap d-flex justify-content-start justify-content-sm-center flex-wrap">
+                <div class="wrap align-items-center ml-5">
+                     <p class="font-weight-normal">Name       : @Model.Username</p>
+                     <p class="font-weight-normal">PhoneNumber    : @Model.PhoneNumber</p>
+                     @if(@Model.Books != null){
+                         @foreach(var item in Model.Books){
+                             <p> @item.Title  
+                                 <a class="text-success" asp-action="ReturnRecord" asp-route-bookId="@item.Id" asp-route-userId="@Model.Id">
+                                             Return
+                                 </a>
+                            </p>  
+                         }
+                     }
+                </div>
+                 
+             </div>
+            
+        </div>
+
+    </div>
+
+</div>

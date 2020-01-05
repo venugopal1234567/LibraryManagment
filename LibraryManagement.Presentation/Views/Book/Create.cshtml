@@ -1,0 +1,103 @@
+@model BookCreateViewModel
+
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="card-body">
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item"><a  asp-action="Index">Book List</a></li>
+                    <li class="breadcrumb-item active" area-current="page">Publish New</li>
+                </ol>
+            </nav>
+            <br /> <br />
+             <form method ="post"  enctype="multipart/form-data" asp-action="Create">
+                  <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+                  <div class="form-row">
+                      <div class="form-group col-md-2">
+                          <label asp-for="Author"></label>
+                      </div>
+                       <div class="form-group col-md-2">
+                          <input asp-for="Author" class="form-control" placeholder="Enter Author Name.." />
+                          <span asp-validation-for="Author" class="text-danger"></span>
+                      </div>
+
+                      <div class="col-md-2"></div>
+                      <div class="form-group col-md-2">
+                          <label asp-for="Title"></label>
+                      </div>
+                       <div class="form-group col-md-2">
+                          <input asp-for="Title" class="form-control"   placeholder="Enter Title.."/>
+                          <span asp-validation-for="Title" class="text-danger"></span>
+                      </div>
+
+                      <div class="col-md-2"></div>
+                       <div class="form-group col-md-2">
+                          <label asp-for="Publisher"></label>
+                      </div>
+                       <div class="form-group col-md-2">
+                          <input asp-for="Publisher" class="form-control"  placeholder="Publisher Name.." />
+                          <span asp-validation-for="Publisher" class="text-danger"></span>
+                      </div>
+
+                        <div class="col-md-2"></div>
+                       <div class="form-group col-md-2">
+                          <label asp-for="Year"></label>
+                      </div>
+                       <div class="form-group col-md-2">
+                          <input asp-for="Year" class="form-control" />
+                          <span asp-validation-for="Year" class="text-danger"></span>
+                      </div>
+
+                       <div class="col-md-2"></div>
+                       <div class="form-group col-md-2">
+                          <label asp-for="Pages"></label>
+                      </div>
+                       <div class="form-group col-md-2">
+                          <input asp-for="Pages" class="form-control" />
+                          <span asp-validation-for="Pages" class="text-danger"></span>
+                      </div>
+                      
+                       <div class="col-md-2"></div>
+                       <div class="form-group col-md-2">
+                          <label asp-for="Language"></label>
+                      </div>
+                       <div class="form-group col-md-2">
+                          <input asp-for="Language" class="form-control"  placeholder="Enter Language.." />
+                          <span asp-validation-for="Language" class="text-danger"></span>
+                      </div>
+
+                      
+                       <div class="col-md-2"></div>
+                       <div class="form-group col-md-2">
+                          <label asp-for="Stock"></label>
+                      </div>
+                       <div class="form-group col-md-2">
+                          <input asp-for="Stock" class="form-control"  placeholder="Enter Stock.." />
+                          <span asp-validation-for="Stock" class="text-danger"></span>
+                      </div>
+
+                         <div class="col-md-2"></div>
+                                 <div class="form-group col-md-2">
+                                 <label asp-for="ImageUrl"></label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <div class="btn btn-primary btn-icon-text">
+                                  <input asp-for="ImageUrl" type="file" value="Upload"/>
+                                  <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                                </div>
+                                
+                            </div>
+
+                  </div>
+                 
+                    <div class="form-group">
+                       <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+             </form>
+            
+        </div>
+
+    </div>
+
+</div>

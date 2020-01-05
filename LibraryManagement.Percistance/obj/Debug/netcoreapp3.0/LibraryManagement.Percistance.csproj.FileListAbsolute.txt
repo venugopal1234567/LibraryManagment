@@ -1,0 +1,13 @@
+D:\dotnet\LibraryManagement\LibraryManagement.Percistance\obj\Debug\netcoreapp3.0\LibraryManagement.Percistance.csprojAssemblyReference.cache
+D:\dotnet\LibraryManagement\LibraryManagement.Percistance\obj\Debug\netcoreapp3.0\LibraryManagement.Percistance.AssemblyInfoInputs.cache
+D:\dotnet\LibraryManagement\LibraryManagement.Percistance\obj\Debug\netcoreapp3.0\LibraryManagement.Percistance.AssemblyInfo.cs
+D:\dotnet\LibraryManagement\LibraryManagement.Percistance\bin\Debug\netcoreapp3.0\LibraryManagement.Percistance.deps.json
+D:\dotnet\LibraryManagement\LibraryManagement.Percistance\bin\Debug\netcoreapp3.0\LibraryManagement.Percistance.runtimeconfig.json
+D:\dotnet\LibraryManagement\LibraryManagement.Percistance\bin\Debug\netcoreapp3.0\LibraryManagement.Percistance.runtimeconfig.dev.json
+D:\dotnet\LibraryManagement\LibraryManagement.Percistance\bin\Debug\netcoreapp3.0\LibraryManagement.Percistance.dll
+D:\dotnet\LibraryManagement\LibraryManagement.Percistance\bin\Debug\netcoreapp3.0\LibraryManagement.Percistance.pdb
+D:\dotnet\LibraryManagement\LibraryManagement.Percistance\bin\Debug\netcoreapp3.0\LibraryManagement.Entity.dll
+D:\dotnet\LibraryManagement\LibraryManagement.Percistance\bin\Debug\netcoreapp3.0\LibraryManagement.Entity.pdb
+D:\dotnet\LibraryManagement\LibraryManagement.Percistance\obj\Debug\netcoreapp3.0\LibraryManagement.Percistance.csproj.CopyComplete
+D:\dotnet\LibraryManagement\LibraryManagement.Percistance\obj\Debug\netcoreapp3.0\LibraryManagement.Percistance.dll
+D:\dotnet\LibraryManagement\LibraryManagement.Percistance\obj\Debug\netcoreapp3.0\LibraryManagement.Percistance.pdb

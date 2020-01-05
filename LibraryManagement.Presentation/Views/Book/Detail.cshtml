@@ -1,0 +1,30 @@
+@model BookDetailViewModel
+
+<div class="row">
+    <div class="col-md-12 grid-margin grid-margin-md-0">
+        <div class="card-body">
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item"><a  asp-action="Index">Book List</a></li>
+                    <li class="breadcrumb-item active" area-current="page">Book Detail</li>
+                </ol>
+            </nav>
+            <br /> <br />
+             <div class="wrap d-flex justify-content-start justify-content-sm-center flex-wrap">
+                <img width="300px" height= "350px" src="@Url.Content(Model.ImageUrl)">
+                <div class="wrap align-items-center ml-5">
+                    <p class="font-weight-bold text-success" style="font-size:20px">@Model.Title</p>
+                     <p class="font-weight-normal">Author       : @Model.Author</p>
+                     <p class="font-weight-normal">Language     : @Model.Language</p>
+                     <p class="font-weight-normal">Publisher    : @Model.Publisher</p>
+                     <p class="font-weight-normal">PublishedDate: @Model.Year.ToString("dd/MM/yyyy")</p>
+                </div>
+                 
+             </div>
+            
+        </div>
+
+    </div>
+
+</div>
