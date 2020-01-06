@@ -150,3 +150,11 @@ D:\dotnet\LibraryManagement\LibraryManagement.Presentation\bin\Debug\netcoreapp3
 D:\dotnet\LibraryManagement\LibraryManagement.Presentation\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs
 D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Views\LibraryUser\Detail.cshtml.g.cs
+D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
+D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
+D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
+D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Areas\Identity\Pages\Account\Logout.cshtml.g.cs
+D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
+D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
+D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs

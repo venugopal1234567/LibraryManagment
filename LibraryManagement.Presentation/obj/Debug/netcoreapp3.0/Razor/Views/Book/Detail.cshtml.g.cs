@@ -33,8 +33,15 @@ using LibraryManagement.Entity;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "D:\dotnet\LibraryManagement\LibraryManagement.Presentation\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5a6672f6b51f568c450fce4b15426cf9503f0f83", @"/Views/Book/Detail.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"265c954ba18695fd3ab1c18e6e1882c9a2a5260c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"42af0a980f0ad1217cab63277287e52f7658786a", @"/Views/_ViewImports.cshtml")]
     public class Views_Book_Detail : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<BookDetailViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Home", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -64,7 +71,7 @@ using LibraryManagement.Entity;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("\r\n<div class=\"row\">\r\n    <div class=\"col-md-12 grid-margin grid-margin-md-0\">\r\n        <div class=\"card-body\">\r\n            <nav>\r\n                <ol class=\"breadcrumb\">\r\n                    <li class=\"breadcrumb-item\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5a6672f6b51f568c450fce4b15426cf9503f0f834172", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5a6672f6b51f568c450fce4b15426cf9503f0f834375", async() => {
                 WriteLiteral("Home");
             }
             );
@@ -82,7 +89,7 @@ using LibraryManagement.Entity;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</li>\r\n                    <li class=\"breadcrumb-item\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5a6672f6b51f568c450fce4b15426cf9503f0f835586", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5a6672f6b51f568c450fce4b15426cf9503f0f835789", async() => {
                 WriteLiteral("Book List");
             }
             );

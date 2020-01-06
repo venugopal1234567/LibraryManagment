@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LibraryManagement.Presentation.Controllers
 {
@@ -25,6 +26,7 @@ namespace LibraryManagement.Presentation.Controllers
             _libraryService = libraryService;
         }
 
+        [Authorize(Roles = "Admin, Student")]
         public IActionResult Index(){
             ViewData["Title"] = "Home";
             var books = _bookService.GetAll().Select(book => new BookIndexViewModel{
@@ -39,13 +41,15 @@ namespace LibraryManagement.Presentation.Controllers
             }).ToList();
             return View(books);
         }
-
+        
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(){
             ViewData["Title"] = "Create";
             var model = new BookCreateViewModel();
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(BookCreateViewModel newBook){
@@ -76,6 +80,8 @@ namespace LibraryManagement.Presentation.Controllers
            return View();
            
         }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id){
             ViewData["Title"] = "Edit";
             var book = _bookService.GetById(id);
@@ -95,6 +101,7 @@ namespace LibraryManagement.Presentation.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(BookEditViewModel upBook){
@@ -127,6 +134,7 @@ namespace LibraryManagement.Presentation.Controllers
            return View();
         }
 
+        [Authorize(Roles = "Admin, Student")]
         public IActionResult Detail(int id){
            ViewData["Title"] = "Detail";
            var book = _bookService.GetById(id);
@@ -146,6 +154,7 @@ namespace LibraryManagement.Presentation.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id){
             ViewData["Title"] = "Delete";
             var book = _bookService.GetById(id);
@@ -160,6 +169,7 @@ namespace LibraryManagement.Presentation.Controllers
         }
 
         
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(BookDeleteViewModel model){
@@ -167,6 +177,7 @@ namespace LibraryManagement.Presentation.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "Admin, Student")]
         public IActionResult BorrowRecord (int id){
           var tempUserList  = _libraryService.GetAll().ToList();
           var selectUser = tempUserList.Select(c => new { 
@@ -180,6 +191,7 @@ namespace LibraryManagement.Presentation.Controllers
           return View(model);
         }
 
+        [Authorize(Roles = "Admin, Student")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> BorrowRecord(LibraryBorrowViewModel model){
