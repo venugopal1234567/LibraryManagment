@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LibraryManagement.Percistance.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,7 +39,8 @@ namespace LibraryManagement.Percistance.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Gender = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -64,20 +65,6 @@ namespace LibraryManagement.Percistance.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Books", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LibraryUsers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Username = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<long>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LibraryUsers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -126,8 +113,8 @@ namespace LibraryManagement.Percistance.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: false)
                 },
@@ -171,8 +158,8 @@ namespace LibraryManagement.Percistance.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -187,7 +174,7 @@ namespace LibraryManagement.Percistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BorrowRecord",
+                name: "BorrowRecords",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -195,21 +182,21 @@ namespace LibraryManagement.Percistance.Migrations
                     BookId = table.Column<int>(nullable: false),
                     BorrowedDate = table.Column<DateTime>(nullable: false),
                     SubmittedDate = table.Column<DateTime>(nullable: false),
-                    UsersId = table.Column<int>(nullable: true)
+                    UsersId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BorrowRecord", x => x.Id);
+                    table.PrimaryKey("PK_BorrowRecords", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BorrowRecord_Books_BookId",
+                        name: "FK_BorrowRecords_Books_BookId",
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BorrowRecord_LibraryUsers_UsersId",
+                        name: "FK_BorrowRecords_AspNetUsers_UsersId",
                         column: x => x.UsersId,
-                        principalTable: "LibraryUsers",
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -254,13 +241,13 @@ namespace LibraryManagement.Percistance.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BorrowRecord_BookId",
-                table: "BorrowRecord",
+                name: "IX_BorrowRecords_BookId",
+                table: "BorrowRecords",
                 column: "BookId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BorrowRecord_UsersId",
-                table: "BorrowRecord",
+                name: "IX_BorrowRecords_UsersId",
+                table: "BorrowRecords",
                 column: "UsersId");
         }
 
@@ -282,19 +269,16 @@ namespace LibraryManagement.Percistance.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "BorrowRecord");
+                name: "BorrowRecords");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Books");
 
             migrationBuilder.DropTable(
-                name: "LibraryUsers");
+                name: "AspNetUsers");
         }
     }
 }

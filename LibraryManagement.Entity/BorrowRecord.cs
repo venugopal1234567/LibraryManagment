@@ -11,9 +11,9 @@ namespace LibraryManagement.Entity
 
         public DateTime SubmittedDate { get; set; }
 
-        public virtual User Users { get; set; }
+        public virtual ApplicationUser Users { get; set; }
 
-        public int UsersId {get; set;}
+        public  string UsersId {get; set;}
 
     }
 }

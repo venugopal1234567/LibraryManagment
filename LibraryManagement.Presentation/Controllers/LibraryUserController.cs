@@ -16,15 +16,15 @@ namespace LibraryManagement.Presentation.Controllers
          private ILibraryService _libraryService;
         private IBookService _bookService;
 
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
     
          private readonly RoleManager<IdentityRole> _roleManager;
 
         public LibraryUserController(ILibraryService libraryService , 
         IBookService bookService,
-         SignInManager<IdentityUser> signInManager, 
-          UserManager<IdentityUser> userManager,
+         SignInManager<ApplicationUser> signInManager, 
+          UserManager<ApplicationUser> userManager,
           RoleManager<IdentityRole> roleManager)
         {
             _libraryService = libraryService;
@@ -38,72 +38,72 @@ namespace LibraryManagement.Presentation.Controllers
             ViewData["Title"] = "Home";
             var users = _libraryService.GetAll().Select(user => new LibraryUserIndexViewModel{
                 Id = user.Id,
-                Username = user.Username,
+                Username = user.UserName,
                 PhoneNumber = user.PhoneNumber
             }).ToList();
             return View(users);
         }
 
-        [Authorize(Roles = "Admin")]
-        public IActionResult Create(){
-            ViewData["Title"] = "Create";
-            var model = new LibraryUserCreateViewModel();
-            return View(model);
-        }
+        // [Authorize(Roles = "Admin")]
+        // public IActionResult Create(){
+        //     ViewData["Title"] = "Create";
+        //     var model = new LibraryUserCreateViewModel();
+        //     return View(model);
+        // }
 
-        [Authorize(Roles = "Admin")]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(LibraryUserCreateViewModel newUser){
-           if(ModelState.IsValid){
-               var model = new User(){
-                 Id = newUser.Id,
-                 Username = newUser.Username,
-                 PhoneNumber = newUser.PhoneNumber
-               };
-               await _libraryService.CreateAsync(model);
-               return RedirectToAction(nameof(Index));
-           }
-           return View();
+        // [Authorize(Roles = "Admin")]
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> Create(LibraryUserCreateViewModel newUser){
+        //    if(ModelState.IsValid){
+        //        var model = new User(){
+        //          Id = newUser.Id,
+        //          UserName = newUser.UserName,
+        //          PhoneNumber = newUser.PhoneNumber
+        //        };
+        //        await _libraryService.CreateAsync(model);
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View();
            
-        }
+        // }
 
-        [Authorize(Roles = "Admin")]
-        public IActionResult Edit(int id){
-            ViewData["Title"] = "Edit";
-            var user = _libraryService.GetById(id);
-            if(user == null){
-                return NotFound();
-            }
-            var model = new LibraryUserEditViewModel (){
-                  Id = user.Id,
-                  Username = user.Username,
-                  PhoneNumber = user.PhoneNumber
+        // [Authorize(Roles = "Admin")]
+        // public IActionResult Edit(string id){
+        //     ViewData["Title"] = "Edit";
+        //     var user = _libraryService.GetById(id);
+        //     if(user == null){
+        //         return NotFound();
+        //     }
+        //     var model = new LibraryUserEditViewModel (){
+        //           Id = user.Id,
+        //           Username = user.UserName,
+        //           PhoneNumber = user.PhoneNumber
 
-            };
-            return View(model);
-        }
+        //     };
+        //     return View(model);
+        // }
 
-        [Authorize(Roles = "Admin")]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(LibraryUserEditViewModel upUser){
+        // [Authorize(Roles = "Admin")]
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> Edit(LibraryUserEditViewModel upUser){
            
-           if(ModelState.IsValid){
-               var user = _libraryService.GetById(upUser.Id);
-               if(user == null){
-                   return NotFound();
-               }
-               user.Username = upUser.Username;
-               user.PhoneNumber = upUser.PhoneNumber;
-               await _libraryService.UpdateAsync(user);
-               return RedirectToAction(nameof(Index));
-           }
-           return View();
-        }
+        //    if(ModelState.IsValid){
+        //        var user = _libraryService.GetById(upUser.Id);
+        //        if(user == null){
+        //            return NotFound();
+        //        }
+        //        user.UserName = upUser.Username;
+        //        user.PhoneNumber = upUser.PhoneNumber;
+        //        await _libraryService.UpdateAsync(user);
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View();
+        // }
 
         [Authorize(Roles = "Admin, Student")]
-        public IActionResult Detail(int id){
+        public IActionResult Detail(string id){
            ViewData["Title"] = "Detail";
            List<Book> bookList = new List<Book>();
            var user = _libraryService.GetById(id);
@@ -116,7 +116,7 @@ namespace LibraryManagement.Presentation.Controllers
            }
            var model = new LibraryUserDetailViewModel(){
                  Id = user.Id,
-                 Username = user.Username,
+                 Username = user.UserName,
                  PhoneNumber = user.PhoneNumber,
                  Books = bookList
            };
@@ -124,7 +124,7 @@ namespace LibraryManagement.Presentation.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult Delete(int id){
+        public IActionResult Delete(string id){
             ViewData["Title"] = "Delete";
             var user = _libraryService.GetById(id);
             if(user == null){
@@ -132,7 +132,7 @@ namespace LibraryManagement.Presentation.Controllers
             }
             var model = new LibraryDeleteViewModel(){
                 Id = user.Id,
-                Username= user.Username
+                Username= user.UserName
             };
             return View(model);
         }
@@ -148,7 +148,7 @@ namespace LibraryManagement.Presentation.Controllers
 
 
         [Authorize(Roles = "Admin, Student")]
-         public async Task<IActionResult> ReturnRecord(int bookId, int userId){
+         public async Task<IActionResult> ReturnRecord(int bookId, string userId){
             await _libraryService.Return(bookId, userId);
             return RedirectToAction("Detail", new { id = userId});
 

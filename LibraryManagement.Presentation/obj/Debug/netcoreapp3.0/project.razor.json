@@ -14374,11 +14374,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\dotnet\\LibraryManagement\\LibraryManagement.Presentation\\Views\\LibraryUser\\Edit.cshtml",
-      "TargetPath": "Views\\LibraryUser\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "d:\\dotnet\\LibraryManagement\\LibraryManagement.Presentation\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
@@ -14406,11 +14401,6 @@
     {
       "FilePath": "d:\\dotnet\\LibraryManagement\\LibraryManagement.Presentation\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\dotnet\\LibraryManagement\\LibraryManagement.Presentation\\Views\\LibraryUser\\Create.cshtml",
-      "TargetPath": "Views\\LibraryUser\\Create.cshtml",
       "FileKind": "mvc"
     },
     {

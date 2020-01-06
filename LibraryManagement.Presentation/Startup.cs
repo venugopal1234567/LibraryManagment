@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using LibraryManagement.Services;
 using LibraryManagement.Services.Implimentation;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using LibraryManagement.Entity;
 
 namespace LibraryManagement.Presentation
 {
@@ -33,11 +34,12 @@ namespace LibraryManagement.Presentation
             // services.AddDbContext<ApplicationDbContext>(options =>
             //     options.UseSqlite(
             //         Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer( Configuration.GetConnectionString("DefaultConnection")));
+          
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<Percistance.ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+              services.AddDbContext<Percistance.ApplicationDbContext>(options => options.UseSqlServer( Configuration.GetConnectionString("DefaultConnection")));
             services.Configure<IdentityOptions>(options => {
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
@@ -56,7 +58,7 @@ namespace LibraryManagement.Presentation
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {

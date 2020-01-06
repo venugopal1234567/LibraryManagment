@@ -182,7 +182,7 @@ namespace LibraryManagement.Presentation.Controllers
           var tempUserList  = _libraryService.GetAll().ToList();
           var selectUser = tempUserList.Select(c => new { 
                ID = c.Id, 
-              UserName = c.Username
+              UserName = c.UserName
            }).ToList();
           ViewBag.SelectUser = new MultiSelectList(selectUser, "ID", "UserName");
           var model = new LibraryBorrowViewModel(){

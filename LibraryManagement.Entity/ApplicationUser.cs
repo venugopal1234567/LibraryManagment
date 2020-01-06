@@ -1,16 +1,16 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 
 namespace LibraryManagement.Entity
 {
-    public class User
+    public class ApplicationUser  : IdentityUser
     {
-        public User()
+        public ApplicationUser()
         {
            this.Borrows = new HashSet<BorrowRecord>();
-        } 
-        public int Id { get; set; }         
-        public string Username { get; set; } 
-        public long PhoneNumber { get; set; }
+        }     
+
+        public string Gender { get; set; }   
         public virtual ICollection<BorrowRecord> Borrows { get; set; }
     }
 }

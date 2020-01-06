@@ -71,9 +71,7 @@ D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3
 D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Views\Book\Edit.cshtml.g.cs
 D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Views\Book\Detail.cshtml.g.cs
 D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Views\Book\Delete.cshtml.g.cs
-D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Views\LibraryUser\Create.cshtml.g.cs
 D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Views\LibraryUser\Delete.cshtml.g.cs
-D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Views\LibraryUser\Edit.cshtml.g.cs
 D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Views\LibraryUser\Index.cshtml.g.cs
 D:\dotnet\LibraryManagement\LibraryManagement.Presentation\obj\Debug\netcoreapp3.0\Razor\Views\Book\BorrowRecord.cshtml.g.cs
 D:\dotnet\LibraryManagement\LibraryManagement.Presentation\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Razor.Language.dll

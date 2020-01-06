@@ -46,7 +46,7 @@ namespace LibraryManagement.Services.Implimentation
         }
 
         public async Task Borrow (BorrowRecord borrowRecord){
-            var existingUser=  _context.LibraryUsers.Single(u => u.Id == borrowRecord.UsersId);
+            var existingUser=  _context.Users.Single(u => u.Id == borrowRecord.UsersId.ToString());
            // var book = _context.Books.Single(b => b.Id == bookId);
              existingUser.Borrows.Add(borrowRecord);
             _context.Update(existingUser);

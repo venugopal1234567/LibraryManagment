@@ -1,11 +1,12 @@
 using System.Threading.Tasks;
+using LibraryManagement.Entity;
 using Microsoft.AspNetCore.Identity;
 
 namespace LibraryManagement.Percistance
 {
     public class DataSeedingInitializer
     {
-        public static async Task UserAndRoleSeedAsync(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager){
+        public static async Task UserAndRoleSeedAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager){
             string[] roles = {"Admin", "Student"};
             foreach(var role in roles){
                 var roleExist = await roleManager.RoleExistsAsync(role);
@@ -16,7 +17,7 @@ namespace LibraryManagement.Percistance
             }
 
             if(userManager.FindByEmailAsync("venuhegde1@gmail.com").Result == null){
-                IdentityUser user = new IdentityUser {
+                ApplicationUser user = new ApplicationUser {
                    UserName = "venuhegde1@gmail.com",
                    Email = "venuhegde1@gmail.com"
                 };
@@ -29,7 +30,7 @@ namespace LibraryManagement.Percistance
             }
 
             if(userManager.FindByEmailAsync("venuhegde2@gmail.com").Result == null){
-                IdentityUser user = new IdentityUser {
+                ApplicationUser user = new ApplicationUser {
                    UserName = "venuhegde2@gmail.com",
                    Email = "venuhegde2@gmail.com"
                 };

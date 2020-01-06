@@ -5,9 +5,9 @@ namespace LibraryManagement.Presentation.Models
 {
     public class LibraryUserDetailViewModel
     {
-         public int Id { get; set; }         
+         public string Id { get; set; }         
         public string Username { get; set; } 
-        public long PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         
          public int BorrowId {get; set;}
          public IEnumerable<Book> Books { get; set; }

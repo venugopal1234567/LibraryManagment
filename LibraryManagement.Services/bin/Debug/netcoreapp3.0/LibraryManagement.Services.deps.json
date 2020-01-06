@@ -844,6 +844,8 @@
       },
       "LibraryManagement.Entity/1.0.0": {
         "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.0.0",
+          "Microsoft.AspNetCore.Identity.UI": "3.0.0",
           "System.ComponentModel.Annotations": "4.7.0"
         },
         "runtime": {
