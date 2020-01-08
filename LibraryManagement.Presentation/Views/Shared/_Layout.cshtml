@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,9 +28,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index">Bookstall</a>
                         </li>
+                         @if(SignInManager.IsSignedIn(User) && User.IsInRole("Admin")){
                          <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="LibraryUser" asp-action="Index">Users</a>
                         </li>
+                         }
+                         else if (SignInManager.IsSignedIn(User)){
+                             <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="LibraryUser" asp-action="Detail">Books Borrowed</a>
+                             </li>
+                         }
                     </ul>
                 </div>
             </div>

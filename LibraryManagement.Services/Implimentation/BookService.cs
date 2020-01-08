@@ -47,10 +47,20 @@ namespace LibraryManagement.Services.Implimentation
 
         public async Task Borrow (BorrowRecord borrowRecord){
             var existingUser=  _context.Users.Single(u => u.Id == borrowRecord.UsersId.ToString());
-           // var book = _context.Books.Single(b => b.Id == bookId);
-             existingUser.Borrows.Add(borrowRecord);
-            _context.Update(existingUser);
-            await _context.SaveChangesAsync();
+             var book = _context.Books.Single(b => b.Id == borrowRecord.BookId);
+             var isBorrowRecord = _context.BorrowRecords.Where(b => b.BookId == borrowRecord.BookId && b.UsersId == borrowRecord.UsersId).FirstOrDefault();
+             if(isBorrowRecord == null && book.Stock >0){
+                book.Stock--;
+               existingUser.Borrows.Add(borrowRecord);
+               _context.Update(book);
+               _context.Update(existingUser);
+               await _context.SaveChangesAsync();
+             }
+            
+        }
+
+        public IEnumerable<Book> Search(string title){
+            return _context.Books.Where(data => data.Title.ToLower().StartsWith(title.ToLower()) ).ToList();
         }
 
     }

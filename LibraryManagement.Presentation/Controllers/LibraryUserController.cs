@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using LibraryManagement.Entity;
 using LibraryManagement.Presentation.Models;
@@ -68,42 +69,45 @@ namespace LibraryManagement.Presentation.Controllers
            
         // }
 
-        // [Authorize(Roles = "Admin")]
-        // public IActionResult Edit(string id){
-        //     ViewData["Title"] = "Edit";
-        //     var user = _libraryService.GetById(id);
-        //     if(user == null){
-        //         return NotFound();
-        //     }
-        //     var model = new LibraryUserEditViewModel (){
-        //           Id = user.Id,
-        //           Username = user.UserName,
-        //           PhoneNumber = user.PhoneNumber
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(string id){
+            ViewData["Title"] = "Edit";
+            var user = _libraryService.GetById(id);
+            if(user == null){
+                return NotFound();
+            }
+            var model = new LibraryUserEditViewModel (){
+                  Id = user.Id,
+                  Username = user.UserName,
+                  PhoneNumber = user.PhoneNumber
 
-        //     };
-        //     return View(model);
-        // }
+            };
+            return View(model);
+        }
 
-        // [Authorize(Roles = "Admin")]
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> Edit(LibraryUserEditViewModel upUser){
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(LibraryUserEditViewModel upUser){
            
-        //    if(ModelState.IsValid){
-        //        var user = _libraryService.GetById(upUser.Id);
-        //        if(user == null){
-        //            return NotFound();
-        //        }
-        //        user.UserName = upUser.Username;
-        //        user.PhoneNumber = upUser.PhoneNumber;
-        //        await _libraryService.UpdateAsync(user);
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View();
-        // }
+           if(ModelState.IsValid){
+               var user = _libraryService.GetById(upUser.Id);
+               if(user == null){
+                   return NotFound();
+               }
+               user.UserName = upUser.Username;
+               user.PhoneNumber = upUser.PhoneNumber;
+               await _libraryService.UpdateAsync(user);
+               return RedirectToAction(nameof(Index));
+           }
+           return View();
+        }
 
         [Authorize(Roles = "Admin, Student")]
         public IActionResult Detail(string id){
+           if(id == null){
+               id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+           }
            ViewData["Title"] = "Detail";
            List<Book> bookList = new List<Book>();
            var user = _libraryService.GetById(id);
@@ -118,7 +122,8 @@ namespace LibraryManagement.Presentation.Controllers
                  Id = user.Id,
                  Username = user.UserName,
                  PhoneNumber = user.PhoneNumber,
-                 Books = bookList
+                 Books = bookList,
+                 Borrows = user.Borrows
            };
             return View(model);
         }
@@ -153,5 +158,23 @@ namespace LibraryManagement.Presentation.Controllers
             return RedirectToAction("Detail", new { id = userId});
 
         }
+        [Authorize(Roles = "Admin, Student")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public  IActionResult Search(string userName){
+           
+            var searchReult = _libraryService.Search(userName).Select(user => new LibraryUserIndexViewModel{
+                Id = user.Id,
+                Username = user.UserName,
+                PhoneNumber = user.PhoneNumber
+            }).ToList();
+        
+            if(searchReult != null){
+            return View("Index", searchReult);
+            }
+            return NotFound();
+
+        }
+
     }
 }

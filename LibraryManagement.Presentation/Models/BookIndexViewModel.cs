@@ -19,5 +19,6 @@ namespace LibraryManagement.Presentation.Models
         public string Language { get; set; }
 
         public string ImageUrl {get; set;}
+        public int Stock { get; set; }
     }
 }

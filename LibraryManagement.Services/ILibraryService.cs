@@ -9,12 +9,14 @@ namespace LibraryManagement.Services
     {
         //  Task CreateAsync(User newUser);
          ApplicationUser GetById(string userId);
-        //  Task UpdateAsync(User user);
-        //  Task UpdateAsync(string id);
+         Task UpdateAsync(ApplicationUser user);
+         Task UpdateAsync(string id);
 
          Task Delete(string userId);
 
          IEnumerable<ApplicationUser> GetAll();
+
+         IEnumerable<ApplicationUser> Search(string userName);
 
         Task Return(int bookId, string userId);
     }

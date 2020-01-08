@@ -11,5 +11,7 @@ namespace LibraryManagement.Presentation.Models
         
          public int BorrowId {get; set;}
          public IEnumerable<Book> Books { get; set; }
+
+         public IEnumerable<BorrowRecord> Borrows {get; set;}
     }
 }

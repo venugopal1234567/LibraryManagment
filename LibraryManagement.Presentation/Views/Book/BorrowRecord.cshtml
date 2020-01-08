@@ -14,16 +14,23 @@
              <form method ="post"  enctype="multipart/form-data" asp-action="BorrowRecord">
                   <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
                   <div class="form-row">
-
-                      <div class="form-group col-md-2">
                           @* <label asp-for="UserId"></label>
                           <select asp-for="UserId"   
                       class="form-control"   
                       asp-items="@( (List<SelectListItem>) ViewBag.SelectUser )" >  
                     </select> *@
 
-                       @Html.DropDownList("UserId", (MultiSelectList)ViewBag.SelectUser)
+                       @* @Html.DropDownList("UserId", (MultiSelectList)ViewBag.SelectUser) *@
+
+                      <div class="col-md-2"></div>
+                       <div class="form-group col-md-2">
+                          <label asp-for="SubmittedDate"></label>
                       </div>
+                       <div class="form-group col-md-2">
+                          <input asp-for="SubmittedDate" class="form-control" />
+                          <span asp-validation-for="SubmittedDate" class="text-danger"></span>
+                      </div>
+
                     <div class="form-group">
                        <input asp-for="BookId" type="hidden"/>
                     </div>

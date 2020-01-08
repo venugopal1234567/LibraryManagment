@@ -1,5 +1,9 @@
 @model LibraryUserDetailViewModel
 
+@{
+    var bookList =  @Model.Books.ToList();
+    var borrowList = @Model.Borrows.ToList();
+}
 <div class="row">
     <div class="col-md-12 grid-margin grid-margin-md-0">
         <div class="card-body">
@@ -13,17 +17,35 @@
             <br /> <br />
              <div class="wrap d-flex justify-content-start justify-content-sm-center flex-wrap">
                 <div class="wrap align-items-center ml-5">
-                     <p class="font-weight-normal">Name       : @Model.Username</p>
-                     <p class="font-weight-normal">PhoneNumber    : @Model.PhoneNumber</p>
+                    <table class="table">
+                         <thead class="thead-light">
+                              <tr>
+                               <th scope="col">Book Image</th>
+                               <th scope="col">Book Title</th>
+                               <th scope="col">Borrow Date</th>
+                               <th scope="col">Return Date</th>
+                               <th scope="col"> </th>
+                             </tr>
+                        <thead>
                      @if(@Model.Books != null){
-                         @foreach(var item in Model.Books){
-                             <p> @item.Title  
-                                 <a class="text-success" asp-action="ReturnRecord" asp-route-bookId="@item.Id" asp-route-userId="@Model.Id">
-                                             Return
-                                 </a>
-                            </p>  
+                         @for(int i=0; i < Model.Books.Count() ; i++){ 
+                             <tbody>
+                                <tr>
+                                     <td> <img alt="image" src="@Url.Content(bookList[i].ImageUrl)" width="250" height="250" /></td>
+                                     <td>@bookList[i].Title</td>
+                                     <td>@borrowList[i].BorrowedDate.ToString()</td>
+                                     <td>@borrowList[i].SubmittedDate.ToString()</td>
+                                     <td> 
+                                         <a class="text-success" asp-action="ReturnRecord" asp-route-bookId="@bookList[i].Id" asp-route-userId="@Model.Id">
+                                             Return 
+                                         </a>
+                                    </td>
+                                </tr>
+                             </tbody>
+
                          }
                      }
+                     </table> 
                 </div>
                  
              </div>

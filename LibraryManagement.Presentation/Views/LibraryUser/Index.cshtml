@@ -11,10 +11,15 @@
                 </ol>
             </nav>
              <div class="row">
+                 <form asp-action="Search" method="post" class="form-inline my-2 my-lg-0">
+                          <input class="form-control mr-sm-2" name="userName" type="search" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                      </form>
+
                  <div class="col-md-12 table-responsive-md">
-                        @if( User.IsInRole("Admin")){
+                        @* @if( User.IsInRole("Admin")){
                       <a class="btn btn-xs btn-outline-success float-md-right"  asp-action="Create">New User</a>
-                        }
+                        } *@
                       <table class="table table-striped">
                           <thead>
                               <tr>

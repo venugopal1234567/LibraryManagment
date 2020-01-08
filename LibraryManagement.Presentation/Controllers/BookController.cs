@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Hosting;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace LibraryManagement.Presentation.Controllers
 {
@@ -35,7 +37,7 @@ namespace LibraryManagement.Presentation.Controllers
                 Title = book.Title,
                 Publisher = book.Publisher,
                 Year = book.Year,
-                Pages = book.Pages,
+                Stock = book.Stock,
                 Language = book.Language,
                 ImageUrl = book.ImageUrl
             }).ToList();
@@ -179,12 +181,12 @@ namespace LibraryManagement.Presentation.Controllers
 
         [Authorize(Roles = "Admin, Student")]
         public IActionResult BorrowRecord (int id){
-          var tempUserList  = _libraryService.GetAll().ToList();
-          var selectUser = tempUserList.Select(c => new { 
-               ID = c.Id, 
-              UserName = c.UserName
-           }).ToList();
-          ViewBag.SelectUser = new MultiSelectList(selectUser, "ID", "UserName");
+        //   var tempUserList  = _libraryService.GetAll().ToList();
+        //   var selectUser = tempUserList.Select(c => new { 
+        //        ID = c.Id, 
+        //       UserName = c.UserName
+        //    }).ToList();
+        //  ViewBag.SelectUser = new MultiSelectList(selectUser, "ID", "UserName");
           var model = new LibraryBorrowViewModel(){
               BookId = id
           };
@@ -197,10 +199,34 @@ namespace LibraryManagement.Presentation.Controllers
         public async Task<IActionResult> BorrowRecord(LibraryBorrowViewModel model){
             var newBorrowRecord = new BorrowRecord(){
                BookId = model.BookId,
-               UsersId = model.UserId
+               UsersId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+               BorrowedDate = DateTime.Now,
+               SubmittedDate = model.SubmittedDate
             };
             await _bookService.Borrow(newBorrowRecord);
-            return RedirectToAction("Detail","LibraryUser", new { id = model.UserId});
+            return RedirectToAction("Detail","LibraryUser", new { id = newBorrowRecord.UsersId});
+
+        }
+
+        [Authorize(Roles = "Admin, Student")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public  IActionResult Search(string title){
+           
+            var searchReult = _bookService.Search(title).Select(book => new BookIndexViewModel{
+                Id = book.Id,
+                Author = book.Author,
+                Title = book.Title,
+                Publisher = book.Publisher,
+                Year = book.Year,
+                Stock = book.Stock,
+                Language = book.Language,
+                ImageUrl = book.ImageUrl
+            }).ToList();
+            if(searchReult != null){
+            return View("Index", searchReult);
+            }
+            return NotFound();
 
         }
 

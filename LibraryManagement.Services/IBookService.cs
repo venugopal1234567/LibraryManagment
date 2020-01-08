@@ -17,6 +17,6 @@ namespace LibraryManagement.Services
 
          Task Borrow (BorrowRecord borrowRecord);
 
-
+         IEnumerable<Book> Search(string title);
     }
 }
