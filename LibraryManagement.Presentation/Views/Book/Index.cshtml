@@ -1,6 +1,5 @@
 @model BookListPagination<BookIndexViewModel>
 
-
 <div class="row">
     <div class="col-md-12 grid-margin">
         <div class="card-body">
@@ -17,7 +16,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                      @foreach (var category in ViewBag.Categories)
                      {
-                         <a class="dropdown-item" asp-action="GetBookByCategory" asp-route-id="@category.Id">@category.categoryName</a>
+                         <a class="dropdown-item" asp-action="GetBookByCategory" asp-route-id="@category.Id" >@category.categoryName</a>
                      }
                     </div>
                     </div>
@@ -93,12 +92,12 @@
                               var disableNext = !Model.IsNextPageAvailable ? "disabled" : " ";
                           }
 
-                          <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex -1)"
+                          <a asp-action="@ViewContext.RouteData.Values["action"]"  asp-route-title="@ViewBag.SearchTitle" asp-route-id="@ViewContext.RouteData.Values["id"]" asp-route-pageNumber="@(Model.PageIndex -1)"
                           class="btn btn-primary @disablePrevious">
                               Previous
                           </a>
 
-                          <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex +1)"
+                          <a asp-action="@ViewContext.RouteData.Values["action"]" asp-route-title="@ViewBag.SearchTitle" asp-route-id="@ViewContext.RouteData.Values["id"]" asp-route-pageNumber="@(Model.PageIndex +1)"
                           class="btn btn-primary @disableNext">
                               Next
                           </a>

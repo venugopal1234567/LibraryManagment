@@ -229,9 +229,8 @@ namespace LibraryManagement.Presentation.Controllers
 
         [Authorize(Roles = "Admin, Student")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public  IActionResult Search(string title){
-           
+            ViewBag.SearchTitle = title;
             var searchReult = _bookService.Search(title).Select(book => new BookIndexViewModel{
                 Id = book.Id,
                 Author = book.Author,
@@ -244,13 +243,36 @@ namespace LibraryManagement.Presentation.Controllers
                 bookCategory = book.BookCategories
             }).ToList();
             if(searchReult != null){
-            return View("Index", searchReult);
+            int pageSize = 2;
+            return View("Index", BookListPagination<BookIndexViewModel>.Create(searchReult, 1, pageSize));
             }
             return NotFound();
 
         }
 
-        public IActionResult GetBookByCategory(int id){
+         [Authorize(Roles = "Admin, Student")]
+        public  IActionResult Search(string title, int? pageNumber){
+            ViewBag.SearchTitle = title;
+            var searchReult = _bookService.Search(title).Select(book => new BookIndexViewModel{
+                Id = book.Id,
+                Author = book.Author,
+                Title = book.Title,
+                Publisher = book.Publisher,
+                Year = book.Year,
+                Stock = book.Stock,
+                Language = book.Language,
+                ImageUrl = book.ImageUrl,
+                 bookCategory = book.BookCategories
+            }).ToList();
+            if(searchReult != null){
+            int pageSize = 2;
+            return View("Index", BookListPagination<BookIndexViewModel>.Create(searchReult, pageNumber ?? 1, pageSize));
+            }
+            return NotFound();
+
+        }
+
+        public IActionResult GetBookByCategory(int id, int? pageNumber){
            ViewBag.Categories = _bookService.GetBookCategories();
            var books =  _bookService.GetBooksByCategory(id).Select(book => new BookIndexViewModel{
                 Id = book.Id,
@@ -263,7 +285,8 @@ namespace LibraryManagement.Presentation.Controllers
                 ImageUrl = book.ImageUrl,
                 bookCategory = book.BookCategories
             }).ToList();
-            return View("Index",books);
+            int pageSize = 2;
+            return View("Index",BookListPagination<BookIndexViewModel>.Create(books, pageNumber ?? 1, pageSize));
         }
 
     }
