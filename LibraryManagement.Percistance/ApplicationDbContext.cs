@@ -21,5 +21,10 @@ namespace LibraryManagement.Percistance
         //   public DbSet<User> LibraryUsers {get; set;}
 
           public DbSet<BorrowRecord> BorrowRecords { get; set; }
+
+          public DbSet<Carousel> Carousels {get; set;}
+
+          public DbSet<BookCategory> BookCategories { get; set; }
+
     }
 }

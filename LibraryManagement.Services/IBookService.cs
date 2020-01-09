@@ -18,5 +18,11 @@ namespace LibraryManagement.Services
          Task Borrow (BorrowRecord borrowRecord);
 
          IEnumerable<Book> Search(string title);
+
+         IEnumerable<BookCategory> GetBookCategories();
+
+          BookCategory GetCategoryById(int id);
+
+          IEnumerable<Book> GetBooksByCategory(int id);
     }
 }

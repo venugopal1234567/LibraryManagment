@@ -54,6 +54,7 @@ namespace LibraryManagement.Presentation
            services.AddRazorPages();
            services.AddScoped<IBookService, BookService>();
             services.AddScoped<ILibraryService, LibraryService>();
+            services.AddScoped<ICarousalService , CarousalService>();
 
         }
 

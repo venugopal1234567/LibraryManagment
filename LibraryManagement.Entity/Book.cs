@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace LibraryManagement.Entity
 {
     public class Book
@@ -30,6 +32,8 @@ namespace LibraryManagement.Entity
        public IEnumerable<BorrowRecord> BorrowRecords {get; set;} 
 
         public int Stock { get; set; }
+
+        public BookCategory BookCategories {get; set;}
 
     }
 }

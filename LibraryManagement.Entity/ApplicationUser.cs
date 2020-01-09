@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
 namespace LibraryManagement.Entity
@@ -12,5 +13,6 @@ namespace LibraryManagement.Entity
 
         public string Gender { get; set; }   
         public virtual ICollection<BorrowRecord> Borrows { get; set; }
+
     }
 }

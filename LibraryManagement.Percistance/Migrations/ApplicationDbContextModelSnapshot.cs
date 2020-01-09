@@ -99,6 +99,9 @@ namespace LibraryManagement.Percistance.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<int?>("BookCategoriesId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -128,7 +131,24 @@ namespace LibraryManagement.Percistance.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BookCategoriesId");
+
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("LibraryManagement.Entity.BookCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("categoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BookCategories");
                 });
 
             modelBuilder.Entity("LibraryManagement.Entity.BorrowRecord", b =>
@@ -157,6 +177,21 @@ namespace LibraryManagement.Percistance.Migrations
                     b.HasIndex("UsersId");
 
                     b.ToTable("BorrowRecords");
+                });
+
+            modelBuilder.Entity("LibraryManagement.Entity.Carousel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Carousels");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -288,6 +323,13 @@ namespace LibraryManagement.Percistance.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("LibraryManagement.Entity.Book", b =>
+                {
+                    b.HasOne("LibraryManagement.Entity.BookCategory", "BookCategories")
+                        .WithMany()
+                        .HasForeignKey("BookCategoriesId");
                 });
 
             modelBuilder.Entity("LibraryManagement.Entity.BorrowRecord", b =>

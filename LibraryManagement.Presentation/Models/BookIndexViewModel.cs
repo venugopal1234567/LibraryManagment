@@ -1,4 +1,5 @@
 using System;
+using LibraryManagement.Entity;
 
 namespace LibraryManagement.Presentation.Models
 {
@@ -20,5 +21,7 @@ namespace LibraryManagement.Presentation.Models
 
         public string ImageUrl {get; set;}
         public int Stock { get; set; }
+
+        public BookCategory bookCategory { get; set; }
     }
 }

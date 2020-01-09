@@ -36,6 +36,7 @@ namespace LibraryManagement.Presentation.Models
        
         [Required(ErrorMessage = "Stock is required")]
         public int Stock { get; set; }
-
+        
+        public BookCategory bookCategory { get; set; }
     }
 }

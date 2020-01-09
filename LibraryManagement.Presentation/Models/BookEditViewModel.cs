@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using LibraryManagement.Entity;
 using Microsoft.AspNetCore.Http;
 
 namespace LibraryManagement.Presentation.Models
@@ -34,6 +35,8 @@ namespace LibraryManagement.Presentation.Models
 
         [Required(ErrorMessage = "Stock is required")]
         public int Stock { get; set; }
+
+        public BookCategory bookCategory { get; set; }
 
     }
 }

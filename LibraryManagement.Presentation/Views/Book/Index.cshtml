@@ -1,14 +1,30 @@
-@model IEnumerable<BookIndexViewModel>
+@model BookListPagination<BookIndexViewModel>
 
 
 <div class="row">
     <div class="col-md-12 grid-margin">
         <div class="card-body">
              <nav>
+               <ul class="navbar-nav mr-auto">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
                     <li class="breadcrumb-item active" area-current="page">Book List</li>
+                    @if(ViewBag.Categories != null){
+                    <div class="dropdown" style="padding-left:20px">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Categories
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                     @foreach (var category in ViewBag.Categories)
+                     {
+                         <a class="dropdown-item" asp-action="GetBookByCategory" asp-route-id="@category.Id">@category.categoryName</a>
+                     }
+                    </div>
+                    </div>
+                }
                 </ol>
+               </ul>
+                
             </nav>
              <div class="row">
                  <div class="col-md-12 table-responsive-md">
@@ -26,7 +42,7 @@
                                   <th>Photo</th>
                                   <th>Author</th>
                                   <th>Title</th>
-                                  <th>Publisher</th>
+                                  <th>Category</th>
                                   <th>Language</th>
                                   <th>Stock</th>
                               </tr>
@@ -45,7 +61,7 @@
                                       </td>
                                       <td>@item.Author</td>
                                       <td>@item.Title</td>
-                                      <td>@item.Publisher</td>
+                                      <td>@item.bookCategory.categoryName </td>
                                       <td>@item.Language</td>
                                       <td>@item.Stock</td>
                                       <td>
@@ -71,6 +87,21 @@
                           </tbody>
 
                       </table>
+                       <br />
+                          @{
+                              var disablePrevious = !Model.IsPreviousPageAvailable ? "disabled" : " ";
+                              var disableNext = !Model.IsNextPageAvailable ? "disabled" : " ";
+                          }
+
+                          <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex -1)"
+                          class="btn btn-primary @disablePrevious">
+                              Previous
+                          </a>
+
+                          <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex +1)"
+                          class="btn btn-primary @disableNext">
+                              Next
+                          </a>
                  </div>
              </div>
         </div>

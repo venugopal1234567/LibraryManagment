@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LibraryManagement.Entity;
 using LibraryManagement.Percistance;
+using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagement.Services.Implimentation
 {
@@ -29,7 +30,10 @@ namespace LibraryManagement.Services.Implimentation
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Book> GetAll() => _context.Books;
+        public IEnumerable<Book> GetAll() {
+             var result = _context.Books.Include(c => c.BookCategories);
+             return result;
+        }
 
 
         public async Task UpdateAsync(Book book)
@@ -60,8 +64,19 @@ namespace LibraryManagement.Services.Implimentation
         }
 
         public IEnumerable<Book> Search(string title){
-            return _context.Books.Where(data => data.Title.ToLower().StartsWith(title.ToLower()) ).ToList();
+            return _context.Books.Include(b => b.BookCategories).Where(data => data.Title.ToLower().StartsWith(title.ToLower()) ).ToList();
         }
 
+        public IEnumerable<BookCategory> GetBookCategories() => _context.BookCategories;
+
+        public BookCategory GetCategoryById(int id){
+           var result = _context.BookCategories.Where(c => c.Id == id).FirstOrDefault();
+           return result;
+        }
+
+        public IEnumerable<Book> GetBooksByCategory(int id){
+          var result = _context.Books.Include(b => b.BookCategories).Where(c => c.BookCategories.Id == id);
+          return result;
+        }
     }
 }

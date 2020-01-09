@@ -29,8 +29,9 @@ namespace LibraryManagement.Presentation.Controllers
         }
 
         [Authorize(Roles = "Admin, Student")]
-        public IActionResult Index(){
+        public IActionResult Index(int? pageNumber){
             ViewData["Title"] = "Home";
+            ViewBag.Categories = _bookService.GetBookCategories();
             var books = _bookService.GetAll().Select(book => new BookIndexViewModel{
                 Id = book.Id,
                 Author = book.Author,
@@ -39,14 +40,23 @@ namespace LibraryManagement.Presentation.Controllers
                 Year = book.Year,
                 Stock = book.Stock,
                 Language = book.Language,
-                ImageUrl = book.ImageUrl
+                ImageUrl = book.ImageUrl,
+                bookCategory = book.BookCategories
             }).ToList();
-            return View(books);
+            int pageSize = 2;
+
+            return View(BookListPagination<BookIndexViewModel>.Create(books, pageNumber ?? 1, pageSize));
         }
         
         [Authorize(Roles = "Admin")]
         public IActionResult Create(){
             ViewData["Title"] = "Create";
+            ViewBag.Categories = _bookService.GetBookCategories().Select(a => 
+                                  new SelectListItem 
+                                  {
+                                      Value = a.Id.ToString(),
+                                      Text =  a.categoryName
+                                  }).ToList();
             var model = new BookCreateViewModel();
             return View(model);
         }
@@ -64,7 +74,8 @@ namespace LibraryManagement.Presentation.Controllers
                  Year = newBook.Year,
                  Pages = newBook.Pages,
                  Language = newBook.Language,
-                 Stock = newBook.Stock
+                 Stock = newBook.Stock,
+                 BookCategories = _bookService.GetCategoryById(newBook.bookCategory.Id)
                };
                if(newBook.ImageUrl != null & newBook.ImageUrl.Length >0){
                    var uploadDir = @"images/book";
@@ -87,6 +98,12 @@ namespace LibraryManagement.Presentation.Controllers
         public IActionResult Edit(int id){
             ViewData["Title"] = "Edit";
             var book = _bookService.GetById(id);
+            ViewBag.Categories = _bookService.GetBookCategories().Select(a => 
+                                  new SelectListItem 
+                                  {
+                                      Value = a.Id.ToString(),
+                                      Text =  a.categoryName
+                                  }).ToList();
             if(book == null){
                 return NotFound();
             }
@@ -98,7 +115,8 @@ namespace LibraryManagement.Presentation.Controllers
                  Year = book.Year,
                  Pages = book.Pages,
                  Language = book.Language,
-                 Stock = book.Stock
+                 Stock = book.Stock,
+                 bookCategory = book.BookCategories
             };
             return View(model);
         }
@@ -120,6 +138,7 @@ namespace LibraryManagement.Presentation.Controllers
                book.Stock = upBook.Stock;
                book.Title = upBook.Title;
                book.Year = upBook.Year;
+               book.BookCategories = _bookService.GetCategoryById(upBook.bookCategory.Id);
                if(upBook.ImageUrl != null && upBook.ImageUrl.Length > 0){
                     var uploadDir = @"images/book";
                    var fileName = Path.GetFileNameWithoutExtension(upBook.ImageUrl.FileName);
@@ -221,13 +240,30 @@ namespace LibraryManagement.Presentation.Controllers
                 Year = book.Year,
                 Stock = book.Stock,
                 Language = book.Language,
-                ImageUrl = book.ImageUrl
+                ImageUrl = book.ImageUrl,
+                bookCategory = book.BookCategories
             }).ToList();
             if(searchReult != null){
             return View("Index", searchReult);
             }
             return NotFound();
 
+        }
+
+        public IActionResult GetBookByCategory(int id){
+           ViewBag.Categories = _bookService.GetBookCategories();
+           var books =  _bookService.GetBooksByCategory(id).Select(book => new BookIndexViewModel{
+                Id = book.Id,
+                Author = book.Author,
+                Title = book.Title,
+                Publisher = book.Publisher,
+                Year = book.Year,
+                Stock = book.Stock,
+                Language = book.Language,
+                ImageUrl = book.ImageUrl,
+                bookCategory = book.BookCategories
+            }).ToList();
+            return View("Index",books);
         }
 
     }
