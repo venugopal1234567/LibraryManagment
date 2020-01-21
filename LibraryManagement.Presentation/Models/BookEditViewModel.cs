@@ -29,8 +29,6 @@ namespace LibraryManagement.Presentation.Models
         [Required(ErrorMessage = "Laanguage is Required"), StringLength(10, MinimumLength = 2)]
         public string Language { get; set; }
 
-        [Display(Name = "Photo")]
-        [Required(ErrorMessage = "Image Url is required")]
         public IFormFile ImageUrl { get; set; }
 
         [Required(ErrorMessage = "Stock is required")]

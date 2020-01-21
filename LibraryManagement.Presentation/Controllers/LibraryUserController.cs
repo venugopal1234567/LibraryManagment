@@ -34,7 +34,7 @@ namespace LibraryManagement.Presentation.Controllers
             _userManager = userManager;
         }
 
-        [Authorize(Roles = "Admin, Student")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Index(){
             ViewData["Title"] = "Home";
             var users = _libraryService.GetAll().Select(user => new LibraryUserIndexViewModel{

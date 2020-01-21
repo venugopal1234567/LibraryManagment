@@ -58,6 +58,7 @@ namespace LibraryManagement.Presentation.Controllers
                                       Text =  a.categoryName
                                   }).ToList();
             var model = new BookCreateViewModel();
+            model.Year = DateTime.Now;
             return View(model);
         }
 
@@ -216,6 +217,7 @@ namespace LibraryManagement.Presentation.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> BorrowRecord(LibraryBorrowViewModel model){
+            if(ModelState.IsValid){
             var newBorrowRecord = new BorrowRecord(){
                BookId = model.BookId,
                UsersId = User.FindFirstValue(ClaimTypes.NameIdentifier),
@@ -224,7 +226,8 @@ namespace LibraryManagement.Presentation.Controllers
             };
             await _bookService.Borrow(newBorrowRecord);
             return RedirectToAction("Detail","LibraryUser", new { id = newBorrowRecord.UsersId});
-
+            }
+            return View();
         }
 
         [Authorize(Roles = "Admin, Student")]

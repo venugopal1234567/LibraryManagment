@@ -23,7 +23,6 @@
                       <table class="table table-striped">
                           <thead>
                               <tr>
-                                  <th>Id</th>
                                   <th>User Name</th>
                                   <th>PhoneNumber</th>
                               </tr>
@@ -32,11 +31,6 @@
                               @foreach (var item in Model)
                               {
                                   <tr>
-                                      <td>
-                                          <a asp-action="Detail" asp-route-id="@item.Id">
-                                              @item.Id
-                                          </a>
-                                      </td>
                                       <td>@item.Username</td>
                                       <td>@item.PhoneNumber</td>
                                       <td>

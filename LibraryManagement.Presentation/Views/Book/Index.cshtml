@@ -62,14 +62,22 @@
                                       <td>@item.Title</td>
                                       <td>@item.bookCategory.categoryName </td>
                                       <td>@item.Language</td>
-                                      <td>@item.Stock</td>
+                                      @if(item.Stock <=0){
+                                           <td><p class="text-danger">@item.Stock</p></td>
+                                      }
+                                      else{
+                                           <td>@item.Stock</td>
+                                      }
+                                     
                                       <td>
-                                          <a class="text-success" asp-action="Detail" asp-route-id="@item.Id">
+                                          @* <a class="text-success" asp-action="Detail" asp-route-id="@item.Id">
                                              Detail
-                                          </a>
+                                          </a> *@
+                                          @if(item.Stock >0){
                                            <a class="text-success" asp-action="BorrowRecord" asp-route-id="@item.Id">
                                              BORROW
                                           </a>
+                                          }
                                            @if( User.IsInRole("Admin")){
                                           <a class="text-primary" asp-action="Edit" asp-route-id="@item.Id">
                                              Edit
