@@ -1,4 +1,4 @@
-@model IEnumerable<LibraryUserIndexViewModel>
+@model BookListPagination<LibraryUserIndexViewModel>
 
 
 <div class="row">
@@ -52,6 +52,21 @@
                           </tbody>
 
                       </table>
+                       <br />
+                          @{
+                              var disablePrevious = !Model.IsPreviousPageAvailable ? "disabled" : " ";
+                              var disableNext = !Model.IsNextPageAvailable ? "disabled" : " ";
+                          }
+
+                          <a asp-action="@ViewContext.RouteData.Values["action"]" asp-route-userName="@ViewBag.SearchTitle" asp-route-id="@ViewContext.RouteData.Values["id"]"  asp-route-pageNumber="@(Model.PageIndex -1)"
+                          class="btn btn-primary @disablePrevious">
+                              Previous
+                          </a>
+
+                          <a asp-action="@ViewContext.RouteData.Values["action"]" asp-route-userName="@ViewBag.SearchTitle" asp-route-id="@ViewContext.RouteData.Values["id"]" asp-route-pageNumber="@(Model.PageIndex +1)"
+                          class="btn btn-primary @disableNext">
+                              Next
+                          </a>
                  </div>
              </div>
         </div>

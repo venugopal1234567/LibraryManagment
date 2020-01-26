@@ -4,6 +4,7 @@ namespace LibraryManagement.Entity
 {
     public class Carousel
     {
+     
         public int Id { get; set; } 
 
         [ForeignKey("Book")]

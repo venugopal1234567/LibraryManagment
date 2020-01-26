@@ -13,5 +13,7 @@ namespace LibraryManagement.Presentation.Models
          public IEnumerable<Book> Books { get; set; }
 
          public IEnumerable<BorrowRecord> Borrows {get; set;}
+
+         public List<double> FineList {get; set;}
     }
 }

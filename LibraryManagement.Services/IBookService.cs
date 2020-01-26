@@ -24,5 +24,7 @@ namespace LibraryManagement.Services
           BookCategory GetCategoryById(int id);
 
           IEnumerable<Book> GetBooksByCategory(int id);
+
+          IEnumerable<Book> GetTopBooks();
     }
 }

@@ -78,5 +78,11 @@ namespace LibraryManagement.Services.Implimentation
           var result = _context.Books.Include(b => b.BookCategories).Where(c => c.BookCategories.Id == id);
           return result;
         }
+
+        public IEnumerable<Book> GetTopBooks()
+        {
+           var result = _context.Books.OrderByDescending( b => b.Year).Take(6);
+           return result;
+        }
     }
 }

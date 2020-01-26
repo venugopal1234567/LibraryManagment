@@ -28,7 +28,10 @@ namespace LibraryManagement.Presentation.Controllers
         {
             var model = new HomeIndexViewModel();
             var carousels = _carousalService.GetAll();
+            var categories = _bookService.GetBookCategories();
             model.Books = carousels.ToList();
+            model.Categories = categories.ToList();
+            model.HomeBooks = _bookService.GetTopBooks().ToList();
             return View(model);
         }
 

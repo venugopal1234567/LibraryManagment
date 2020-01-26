@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -35,14 +36,15 @@ namespace LibraryManagement.Presentation.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult Index(){
+        public IActionResult Index(int? pageNumber){
             ViewData["Title"] = "Home";
             var users = _libraryService.GetAll().Select(user => new LibraryUserIndexViewModel{
                 Id = user.Id,
                 Username = user.UserName,
                 PhoneNumber = user.PhoneNumber
             }).ToList();
-            return View(users);
+            int pageSize = 2;
+            return View(BookListPagination<LibraryUserIndexViewModel>.Create(users, pageNumber ?? 1, pageSize));
         }
 
         // [Authorize(Roles = "Admin")]
@@ -110,12 +112,20 @@ namespace LibraryManagement.Presentation.Controllers
            }
            ViewData["Title"] = "Detail";
            List<Book> bookList = new List<Book>();
+           List<double> fineList = new List<double>();
            var user = _libraryService.GetById(id);
            if(user == null){
                return NotFound();
            }
            foreach(var item in user.Borrows){
               var book = _bookService.GetById(item.BookId);
+              DateTime submitDate = (DateTime) item.SubmittedDate;
+              DateTime presentDay = DateTime.Now;
+
+              if(submitDate < presentDay)
+                      fineList.Add(Math.Floor((presentDay - submitDate).TotalDays * 20));
+              else
+                fineList.Add(0);
               bookList.Add(book);
            }
            var model = new LibraryUserDetailViewModel(){
@@ -123,7 +133,8 @@ namespace LibraryManagement.Presentation.Controllers
                  Username = user.UserName,
                  PhoneNumber = user.PhoneNumber,
                  Books = bookList,
-                 Borrows = user.Borrows
+                 Borrows = user.Borrows,
+                 FineList = fineList
            };
             return View(model);
         }
@@ -162,7 +173,7 @@ namespace LibraryManagement.Presentation.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public  IActionResult Search(string userName){
-           
+            ViewBag.SearchTitle = userName;
             var searchReult = _libraryService.Search(userName).Select(user => new LibraryUserIndexViewModel{
                 Id = user.Id,
                 Username = user.UserName,
@@ -170,7 +181,25 @@ namespace LibraryManagement.Presentation.Controllers
             }).ToList();
         
             if(searchReult != null){
-            return View("Index", searchReult);
+            int pageSize = 1;
+            return View("Index", BookListPagination<LibraryUserIndexViewModel>.Create(searchReult, 1, pageSize));
+            }
+            return NotFound();
+
+        }
+
+         [Authorize(Roles = "Admin, Student")]
+        public  IActionResult Search(string userName,  int? pageNumber){
+            ViewBag.SearchTitle = userName;
+            var searchReult = _libraryService.Search(userName).Select(user => new LibraryUserIndexViewModel{
+                Id = user.Id,
+                Username = user.UserName,
+                PhoneNumber = user.PhoneNumber
+            }).ToList();
+        
+            if(searchReult != null){
+            int pageSize = 1;
+            return View("Index", BookListPagination<LibraryUserIndexViewModel>.Create(searchReult,  pageNumber ?? 1, pageSize));
             }
             return NotFound();
 

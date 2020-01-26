@@ -12,7 +12,7 @@ namespace LibraryManagement.Presentation.Infrastructure
      public override bool IsValid(object value){
          DateTime submitDate = (DateTime)value;
          DateTime presentDay = DateTime.Now;
-         DateTime lastDay = submitDate.AddDays(15);
+         DateTime lastDay = presentDay.AddDays(15);
          if((submitDate > presentDay) && (submitDate <lastDay) )
                  return true;
           return false;

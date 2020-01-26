@@ -3,6 +3,7 @@
 @{
     var bookList =  @Model.Books.ToList();
     var borrowList = @Model.Borrows.ToList();
+    var fineList = @Model.FineList.ToList();
 }
 <div class="row">
     <div class="col-md-12 grid-margin grid-margin-md-0">
@@ -26,6 +27,7 @@
                                <th scope="col">Book Title</th>
                                <th scope="col">Borrow Date</th>
                                <th scope="col">Return Date</th>
+                               <th scope="col">Fine</th>
                                <th scope="col"> </th>
                              </tr>
                         <thead>
@@ -37,6 +39,11 @@
                                      <td>@bookList[i].Title</td>
                                      <td>@borrowList[i].BorrowedDate.ToString()</td>
                                      <td>@borrowList[i].SubmittedDate.ToString()</td>
+                                     @if(@fineList[i] > 0){
+                                     <td><p class="text-danger">@fineList[i]</p></td>
+                                     }else{
+                                      <td><p class="text-success">@fineList[i]</p></td>
+                                     }
                                      <td> 
                                          <a class="text-success" asp-action="ReturnRecord" asp-route-bookId="@bookList[i].Id" asp-route-userId="@Model.Id">
                                              Return 
